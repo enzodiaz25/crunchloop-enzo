@@ -8,7 +8,18 @@ This is a simple Todo List API built in Ruby on Rails 7. This project is current
 
 To build the application:
 
+### Natively
+
 `bin/setup`
+
+### Using Docker Compose
+
+```sh
+  docker compose build
+  docker compose run --rm web bundle install
+  docker compose run --rm web bin/setup
+  docker compose up
+```
 
 ## Run the API
 

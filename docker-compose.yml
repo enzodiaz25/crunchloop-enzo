@@ -1,0 +1,15 @@
+volumes:
+  bundler_cache:
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - bundler_cache:/bundle
+    tty: true
+    stdin_open: true
