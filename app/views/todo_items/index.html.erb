@@ -1,0 +1,19 @@
+<h1><%= t(".title")%></h1>
+
+<% if @todo_items.any? %>
+  <%= link_to t(".complete_all"),
+    complete_all_items_todo_list_path(@todo_items.first.todo_list),
+    id: "mark_all_as_completed",
+    data: {
+      turbo_method: :put,
+      turbo_stream: true
+    }
+  %>
+<% end %>
+
+<turbo-frame id="todo_items">
+  <div>
+    <%= render partial: "todo_item", collection: @todo_items %>
+    <%= paginate @todo_items %>
+  </div>
+</turbo-frame>

@@ -1,5 +1,6 @@
 volumes:
   bundler_cache:
+  db:
 
 services:
   web:
@@ -13,3 +14,24 @@ services:
       - bundler_cache:/bundle
     tty: true
     stdin_open: true
+    depends_on:
+      - db
+      - redis
+  db:
+    environment:
+      - POSTGRES_PASSWORD=admin
+    image: postgres:13
+    volumes:
+      - db:/var/lib/postgresql/data
+  redis:
+    image: redis:7.2.5
+  jobs:
+    command: "bundle exec sidekiq -c 5"
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - bundler_cache:/bundle
+    depends_on:
+      - redis

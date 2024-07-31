@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def raise_not_found
     raise ActionController::RoutingError.new('Not supported format')
   end
+
+  def render_flash
+    render turbo_stream: turbo_stream.update("flash", partial: "shared/flash")
+  end
 end

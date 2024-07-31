@@ -18,5 +18,8 @@ module RailsInterview
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.cache_store = :redis_store, ENV["REDIS_URL"]
+    config.active_job.queue_adapter = :sidekiq
   end
 end

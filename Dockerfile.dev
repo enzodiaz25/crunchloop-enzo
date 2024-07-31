@@ -2,11 +2,14 @@ FROM ruby:3.1.6-slim
 
 WORKDIR /app
 
-RUN apt-get update -qq && apt-get install -y sqlite3 build-essential
+RUN apt-get update -qq && apt-get install -y \
+  build-essential \
+  postgresql-client \
+  libpq-dev
 
 RUN mkdir /bundle
 RUN useradd rails --create-home --shell /bin/bash && \
-chown -R rails:rails /app /bundle
+  chown -R rails:rails /app /bundle
 USER rails:rails
 
 ENV BUNDLE_PATH=/bundle/vendor

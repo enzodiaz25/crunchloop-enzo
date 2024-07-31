@@ -30,4 +30,30 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      todo_list:
+        name: Name
+      todo_items:
+        title: Title
+        description: Description
+        completed: Completed
+  api:
+    record_not_found: Unable to found %{model}.
+    todo_lists:
+      destroy:
+        success: To-do list was successfully removed.
+        error: Unable to delete to-do list.
+    todo_items:
+      destroy:
+        success: To-do item was successfully removed.
+        error: Unable to delete to-do item.
+  todo_items:
+    index:
+      title: TO-DO items
+      complete_all: Mark all items as completed
+  todo_lists:
+    index:
+      title: TO-DO lists
+    complete_all_items:
+      success: We are processing your request. All items in your list will be marked as completed shortly.

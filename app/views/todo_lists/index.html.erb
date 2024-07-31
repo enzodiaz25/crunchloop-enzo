@@ -1,9 +1,13 @@
-<%= link_to 'Add Todo List', new_todo_list_path %>
+<h1><%= t(".title") %></h1>
 
-<div>
-  <% @todo_lists.each do |todo_list| %>
-    <div>
-      #<%= todo_list.id %> | <%= todo_list.name %>
-    </div>
-  <% end %>
-</div>
+<turbo-frame id="todo_lists">
+  <div>
+    <% @todo_lists.each do |todo_list| %>
+      <div>
+        <%= link_to "#{todo_list.id} | #{todo_list.name} (#{todo_list.todo_items_count})", todo_list_todo_items_path(todo_list), data: {turbo_frame: "_top"}  %>
+      </div>
+    <% end %>
+
+    <%= paginate @todo_lists %>
+  </div>
+</turbo-frame>
